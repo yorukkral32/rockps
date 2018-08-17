@@ -1,76 +1,107 @@
 <!DOCTYPE html>
 <html>
-<div id="background">    
-   
-    
+
     <head>
+        <link rel="stylesheet" href="style.css">
         <meta charset="utf-8">
         <title>rps</title>
 
     </head>
-<body>
-    
+    <body>
+        <div id=buttons>
+            
+            <button id="btnRock">Rock!</button> 
+            <button id="btnPaper">Paper!</button> 
+            <button id="btnScissors">Scissor!</button> 
+        
+        </div>
+        <p id="demo"></p>
+        <p id="demo2"></p>
+        <p id="demo3"></p>
+        <p>Player Score:</p><p id="playerScore"></p>
+        <p>Computer Score:</p><p id="computerScore"></p>
+
 
 </body>
 
 
 
 <script>
-
-var userChoice = prompt("Do you choose rock, paper or scissors?");
-var userChoice = userChoice.toUpperCase();
-var userChoice = userChoice.toLowerCase();
-if (! userChoice) {
-    document.write("<p>not valid</p>")
-} else {
-    document.write("<p>Player 1:" + " " + userChoice + "</p>")
-}
-var computerChoice = Math.random();
-    
-if (computerChoice < 0.34){
-    computerChoice = "rock";}
-    
-else if (computerChoice <= 0.67) {
-        computerChoice = "paper";}
-    
-else {computerChoice = "scissors"; };
-
-
-document.write("<p>Computer:" + " " + computerChoice + "</p>");
-
-var compare = function(choice1,choice2) {
-    if (choice1 === choice2) {
-        return "It's a tie!";
-            }
-    if (choice1 === "rock") {
-        if (choice2 === "scissors") {
-                    // rock wins
-            return "You win!";
-                } else {
-                    // paper wins
-                    return "You lose! Try again.";
-                }
-            }
-            if (choice1 === "paper") {
-                if (choice2 === "rock") {
-                    // paper wins
-                    return "You win!";
-                } else {
-                    // scissors wins
-                    return "You lose! Try again.";
-                }
-            }
-            if (choice1 === "scissors") {
-                if (choice2 === "rock") {
-                    // rock wins
-                    return "You lose! Try again.";
-                } else {
-                    // scissors wins
-                    return "You win!";
-                }
-            }
+    const playerScore=1;
+    const computerScore=1;
+    function increment(x) {
+        x++;
+        return x;
+    }
+    const pc="";
+    const cc="";
+    const result="";
+    var compare = function(choice1,choice2) {
+            
+            if (choice1 === choice2) {return "It's a tie!";}
+            
+            if (choice1 === "rock") {if (choice2 === "scissors") {document.getElementById("playerScore").innerHTML = increment(playerScore);;return "You win!";} 
+                else {document.getElementById("computerScore").innerHTML = increment(computerScore);return "You lose! Try again.";}}
+            
+            if (choice1 === "paper") {if (choice2 === "rock") {document.getElementById("playerScore").innerHTML = increment(playerScore); return "You win!";} 
+                else {document.getElementById("computerScore").innerHTML = increment(computerScore);return "You lose! Try again.";}}
+            
+            if (choice1 === "scissors") {if (choice2 === "rock") {document.getElementById("computerScore").innerHTML = increment(computerScore);return "You lose! Try again.";} 
+                else {document.getElementById("playerScore").innerHTML = increment(playerScore);;return "You win!";}}
         };
-var results = compare(userChoice,computerChoice);
-document.write("<br><hr><br>" + results);
-document.write("<br><hr><br>"+"Note from the developer:Kepez-Gündoğdu mahallesi tayfaya selamlar")
+    
+    
+
+    
+    document.getElementById("btnRock").addEventListener("click", selectsRock);
+    document.getElementById("btnPaper").addEventListener("click", selectsPaper);
+    document.getElementById("btnScissors").addEventListener("click", selectsScissors);
+    
+    function selectsRock() {
+        let pc="rock";
+        
+        var cc = Math.random();
+        if (cc < 0.34){cc = "rock";}
+        else if (cc <= 0.67) {cc = "paper";}
+        else {cc = "scissors"; };
+        
+        var results = compare(pc,cc);
+        
+        document.getElementById("demo").innerHTML = results;
+        document.getElementById("demo2").innerHTML = "Player Selects:"+pc;
+        document.getElementById("demo3").innerHTML = "Computer selects:"+cc;
+        
+    }    
+    
+    function selectsPaper() {
+        let pc="paper";
+
+        var cc = Math.random();
+        if (cc < 0.34){cc = "rock";}
+        else if (cc <= 0.67) {cc = "paper";}
+        else {cc = "scissors"; };
+        
+        var results = compare(pc,cc);
+        
+        document.getElementById("demo").innerHTML = results;
+        document.getElementById("demo2").innerHTML = "Player Selects:"+pc;
+        document.getElementById("demo3").innerHTML = "Computer selects:"+cc;
+    
+    }    
+       
+    function selectsScissors() {
+        let pc="scissors";
+        
+        var cc = Math.random();
+        if (cc < 0.34){cc = "rock";}
+        else if (cc <= 0.67) {cc = "paper";}
+        else {cc = "scissors"; };
+
+        var results = compare(pc,cc);
+        
+        document.getElementById("demo").innerHTML = results;
+        document.getElementById("demo2").innerHTML = "Player Selects:"+pc;
+        document.getElementById("demo3").innerHTML = "Computer selects:"+cc;
+    
+    }    
 </script>
